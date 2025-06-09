@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, HttpStatus, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { UsuariosService } from './usuarios.service';
-import { CreateUsuariosDto, FilterDto, UpdateUsuariosDto } from './usuarios.dto';
+import { CreateUsuariosDto, FilterDto, UpdateUsuariosDto } from '../../presentacion/dtos/usuarios.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { BearerAuthToken, VersionDescription } from 'src/decorators/controller.decorator';
+import { BearerAuthToken, VersionDescription } from 'src/presentacion/decorators/controller.decorator';
 
 @ApiTags('[USUARIOS] USUARIOS'.toUpperCase())
 @Controller('usuarios')

@@ -5,11 +5,11 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { VersioningType } from '@nestjs/common';
 import { join } from 'path';
 import { ConfigService } from '@nestjs/config';
-import { IPackageJson } from './dto/interface';
-import { parseCors } from './dto/cors.helper';
+import { IPackageJson } from './shared/dto/interface';
+import { parseCors } from './shared/dto/cors.helper';
 import { json, urlencoded } from 'express';
-import { ResponseFormatInterceptor } from './interceptors/response-format.interceptor';
-import { configSwagger, printServerInitLog } from './dto/swagger.helper';
+import { ResponseFormatInterceptor } from './presentacion/interceptors/response-format.interceptor';
+import { configSwagger, printServerInitLog } from './shared/dto/swagger.helper';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);

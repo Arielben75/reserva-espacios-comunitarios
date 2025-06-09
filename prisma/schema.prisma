@@ -28,4 +28,64 @@ model Usuarios {
   creadoEn               DateTime?       @default(now())
   actualizadoEn          DateTime?       @updatedAt
 
+  reservaciones Reservaciones[]
+}
+
+model TiposEspacios {
+  id Int @id @default(autoincrement())
+  nombre String
+  descripcion String?
+  estado Int @default(1)
+  creadoEn               DateTime?       @default(now())
+  actualizadoEn          DateTime?       @updatedAt
+
+  espacios Espacios[]
+}
+
+model TiposReservacion {
+  id Int @id @default(autoincrement())
+  nombre String
+  estado Int @default(1)
+  creadoEn               DateTime?       @default(now())
+  actualizadoEn          DateTime?       @updatedAt
+
+  reservaciones Reservaciones[]
+}
+
+model Espacios {
+  id Int @id @default(autoincrement())
+  nombre String
+  tipoEspacioId Int
+  descripcion String?
+  capacidad Int
+  tarifaHora Float
+  tarifaDia Float
+  estado Int @default(1)
+  creadoEn               DateTime?       @default(now())
+  actualizadoEn          DateTime?       @updatedAt
+
+  tiposEspacios TiposEspacios @relation(fields: [tipoEspacioId], references: [id])
+
+  reservaciones Reservaciones[]
+}
+
+model Reservaciones {
+  id Int @id @default(autoincrement())
+  usuarioId Int
+  espacioId Int
+  fechaInicial DateTime
+  fechaFinal DateTime
+  horasReserva Int
+  importeTotal Float
+  estadoReservacionId Int
+  transaccionId   String?
+  eventoCalendarioId String?
+
+  estado Int @default(1)
+  creadoEn               DateTime?       @default(now())
+  actualizadoEn          DateTime?       @updatedAt
+
+  usuarios Usuarios @relation(fields: [usuarioId], references: [id])
+  espacios Espacios @relation(fields: [espacioId], references: [id])
+  tiposReservacion TiposReservacion @relation(fields: [estadoReservacionId], references: [id])
 }

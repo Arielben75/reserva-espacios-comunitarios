@@ -3,10 +3,8 @@
 import { Module } from "@nestjs/common";
 import { UsuariosModule } from "./usuarios/usuarios.module";
 import { RouterModule } from "@nestjs/core";
-import { AuthModule } from "./auth/auth.module";
 
 const modules = [
-  AuthModule,
   UsuariosModule,
 ];
 

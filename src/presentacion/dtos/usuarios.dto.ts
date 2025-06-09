@@ -39,14 +39,14 @@ export class CreateUsuariosDto {
   })
   fechaNacimiento: Date;
 
-  /* @Expose()
+  @Expose()
   @Transform(({ value }: TransformFnParams) => (value ? value.toString().trim() : value))
   @Type(() => String)
   @Length(2, 100, { message: 'la nacionalidad debe ser de mas de 2 caracteres asta un maximo de 100' })
   @IsString({ message: 'la nacionalidad debe estar en formato string' })
   @IsNotEmpty({ message: 'la nacionalidad no debe estar vacio' })
   @ApiProperty({ description: 'nacionalidad del Usuario', required: true })
-  nacionalidad: string; */
+  nacionalidad: string;
 
   @Expose()
   @Transform(({ value }: TransformFnParams) => (value ? value.toString().trim() : value))

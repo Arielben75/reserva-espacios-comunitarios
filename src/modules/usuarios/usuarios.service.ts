@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/database/prima.service';
-import { dataResponseError, dataResponseSuccess,  IResponse } from 'src/dto/response.dto';
-import { CreateUsuariosDto, FilterDto, UpdateUsuariosDto } from './usuarios.dto';
+import { PrismaService } from 'src/infraestructura/database/prima.service';
+import { dataResponseError, dataResponseSuccess,  IResponse } from 'src/shared/dto/response.dto';
+import { CreateUsuariosDto, FilterDto, UpdateUsuariosDto } from '../../presentacion/dtos/usuarios.dto';
 import { DateTime } from 'luxon';
 import * as bcrypt from 'bcrypt';
 import { Prisma } from '@prisma/client';

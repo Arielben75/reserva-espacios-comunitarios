@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { dataResponseSuccess, ResponseDTO } from './dto/response.dto';
+import { dataResponseSuccess, ResponseDTO } from './shared/dto/response.dto';
 import { DateTime } from 'luxon';
 import { ConfigService } from '@nestjs/config';
-import { IPackageJson } from './dto/interface';
+import { IPackageJson } from './shared/dto/interface';
 
 @Injectable()
 export class AppService {

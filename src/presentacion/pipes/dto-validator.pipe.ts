@@ -1,7 +1,7 @@
 import { ArgumentMetadata, HttpException, Injectable, PipeTransform } from "@nestjs/common";
 import { plainToInstance } from "class-transformer";
 import { validate, ValidationError, ValidationArguments } from "class-validator";
-import { ResponseDTO, ValidationErrorsType } from "src/dto/response.dto";
+import { ResponseDTO, ValidationErrorsType } from "src/shared/dto/response.dto";
 
 @Injectable()
 export class DtoValidatorPipe implements PipeTransform<any> {

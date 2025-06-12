@@ -1,30 +1,29 @@
 import { Controller, Post, Get, Body, Param, UseGuards } from '@nestjs/common';
 import { ReservacionService } from '../../aplicacion/services/reservacion.service';
+import { ApiTags } from '@nestjs/swagger';
+import { BearerAuthToken, VersionDescription } from '../decorators/controller.decorator';
+import { CreateReservacionDto } from '../dtos/reservaciones.dto';
 
-interface CreateReservationDto {
-  spaceId: number;
-  startDate: string;
-  endDate: string;
-  paymentData: any;
-}
-
-@Controller('reservations')
-export class ReservationController {
+@ApiTags('[reservaciones] reservaciones'.toUpperCase())
+@Controller('reservaciones')
+export class ReservacionController {
   constructor(private readonly reservationService: ReservacionService) {}
 
-  @Post()
-  // @UseGuards(JwtAuthGuard) // Implementar guard de autenticación
+  @Post('/registrar')
+  @BearerAuthToken()
+  @VersionDescription(
+      '1',
+      'Servico para registrar una reserva',
+    )
   async createReservation(
-    @Body() createReservationDto: CreateReservationDto,
-    // @GetUser() user: User // Obtener usuario del token JWT
+    @Body() createReservationDto: CreateReservacionDto,
   ) {
-    const userId = 'current-user-id'; // Simplificado para el ejemplo
     const reservation = await this.reservationService.createReservation(
-      userId,
-      createReservationDto.spaceId,
-      new Date(createReservationDto.startDate),
-      new Date(createReservationDto.endDate),
-      createReservationDto.paymentData
+      createReservationDto.usuarioId,
+      createReservationDto.espacioId,
+      createReservationDto.fechaInical,
+      createReservationDto.fechaFinal,
+      createReservationDto.horasReserva
     );
 
     return {

@@ -14,55 +14,55 @@ datasource db {
 }
 
 model Usuarios {
-  id Int @id @default(autoincrement())
-  nombres String
-  primerApellido String
+  id              Int       @id @default(autoincrement())
+  nombres         String
+  primerApellido  String
   segundoApellido String
   fechaNacimiento String
-  nacionalidad String
-  email String @unique
-  userName String @unique
-  password String
-  celular String
-  estado Int @default(1)
-  creadoEn               DateTime?       @default(now())
-  actualizadoEn          DateTime?       @updatedAt
+  nacionalidad    String
+  email           String    @unique
+  userName        String    @unique
+  password        String
+  celular         String
+  estado          Int       @default(1)
+  creadoEn        DateTime? @default(now())
+  actualizadoEn   DateTime? @updatedAt
 
   reservaciones Reservaciones[]
 }
 
 model TiposEspacios {
-  id Int @id @default(autoincrement())
-  nombre String
-  descripcion String?
-  estado Int @default(1)
-  creadoEn               DateTime?       @default(now())
-  actualizadoEn          DateTime?       @updatedAt
+  id            Int       @id @default(autoincrement())
+  nombre        String
+  descripcion   String?
+  estado        Int       @default(1)
+  creadoEn      DateTime? @default(now())
+  actualizadoEn DateTime? @updatedAt
 
   espacios Espacios[]
 }
 
 model TiposReservacion {
-  id Int @id @default(autoincrement())
-  nombre String
-  estado Int @default(1)
-  creadoEn               DateTime?       @default(now())
-  actualizadoEn          DateTime?       @updatedAt
+  id            Int       @id @default(autoincrement())
+  nombre        String
+  estado        Int       @default(1)
+  creadoEn      DateTime? @default(now())
+  actualizadoEn DateTime? @updatedAt
 
   reservaciones Reservaciones[]
 }
 
 model Espacios {
-  id Int @id @default(autoincrement())
-  nombre String
+  id            Int       @id @default(autoincrement())
+  nombre        String
   tipoEspacioId Int
-  descripcion String?
-  capacidad Int
-  tarifaHora Float
-  tarifaDia Float
-  estado Int @default(1)
-  creadoEn               DateTime?       @default(now())
-  actualizadoEn          DateTime?       @updatedAt
+  descripcion   String?
+  capacidad     Int
+  tarifaHora    Float
+  tarifaDia     Float
+  estado        Int       @default(1)
+  creadoEn      DateTime? @default(now())
+  actualizadoEn DateTime? @updatedAt
 
   tiposEspacios TiposEspacios @relation(fields: [tipoEspacioId], references: [id])
 
@@ -70,22 +70,22 @@ model Espacios {
 }
 
 model Reservaciones {
-  id Int @id @default(autoincrement())
-  usuarioId Int
-  espacioId Int
-  fechaInicial DateTime
-  fechaFinal DateTime
-  horasReserva Int
-  importeTotal Float
+  id                  Int      @id @default(autoincrement())
+  usuarioId           Int
+  espacioId           Int
+  fechaInicial        DateTime
+  fechaFinal          DateTime
+  horasReserva        Int
+  importeTotal        Float
   estadoReservacionId Int
-  transaccionId   String?
-  eventoCalendarioId String?
+  transaccionId       String?
+  eventoCalendarioId  String?
 
-  estado Int @default(1)
-  creadoEn               DateTime?       @default(now())
-  actualizadoEn          DateTime?       @updatedAt
+  estado        Int       @default(1)
+  creadoEn      DateTime? @default(now())
+  actualizadoEn DateTime? @updatedAt
 
-  usuarios Usuarios @relation(fields: [usuarioId], references: [id])
-  espacios Espacios @relation(fields: [espacioId], references: [id])
+  usuarios         Usuarios         @relation(fields: [usuarioId], references: [id])
+  espacios         Espacios         @relation(fields: [espacioId], references: [id])
   tiposReservacion TiposReservacion @relation(fields: [estadoReservacionId], references: [id])
 }

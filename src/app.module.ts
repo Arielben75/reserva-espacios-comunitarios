@@ -8,12 +8,9 @@ import { DtoValidatorPipe } from './presentacion/pipes/dto-validator.pipe';
 import { ParamValidatorPipe } from './presentacion/pipes/param-validator.pipe';
 import { DataBaseModule } from './modules/database.module';
 import { JwtModule } from '@nestjs/jwt';
-import { ReservationController } from './presentacion/controller/reservaciones.controller';
-import { ReservacionService } from './aplicacion/services/reservacion.service';
-import { EspaciosRepository } from './infraestructura/adapters/repositories/espacios.repository';
 import { AuthModule } from './modules/auth.module';
-import { ApiModule } from './modules/api.module';
 import { ReservacionesModule } from './modules/reservaciones.module';
+import { EspaciosModule } from './modules/espacios.module';
 
 
 @Module({
@@ -35,9 +32,9 @@ import { ReservacionesModule } from './modules/reservaciones.module';
     DataBaseModule,
     AuthModule,
     ReservacionesModule,
-    ApiModule,
+    EspaciosModule,
   ],
-  controllers: [AppController, ReservationController],
+  controllers: [AppController],
   providers: [
     AppService,
     ConfigService,

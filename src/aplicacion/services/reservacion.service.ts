@@ -19,21 +19,21 @@ export class ReservacionService {
   ) {}
 
   async createReservation(
-    userId: string,
-    spaceId: number,
-    startDate: Date,
-    endDate: Date,
-    paymentData: any
+    usuarioId: number,
+    espacioId: number,
+    fechaInical: Date,
+    fechaFinal: Date,
+    horasReserva: any,
   ): Promise<Reservacion> {
     // 1. Validar disponibilidad del espacio
-    const space = await this.spaceRepository.findById(spaceId);
-    if (!space || !space.available) {
-      throw new Error('Space not available');
+    const space = await this.spaceRepository.findById(espacioId);
+    if (!space || !space.estado) {
+      throw new Error('Espacio no disponible');
     }
 
     // 2. Calcular costo
-    const hours = (endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60);
-    const totalAmount = hours * space.hourlyRate;
+    const hours = horasReserva;
+    const totalAmount = hours * space.tarifaHora;
 
     // 3. Procesar pago
     /* const paymentResult = await this.paymentService.processPayment(totalAmount, paymentData);
@@ -42,7 +42,13 @@ export class ReservacionService {
     } */
 
     // 4. Crear reserva
-    const reservation = Reservacion.create(userId, spaceId, startDate, endDate, totalAmount);
+    const reservation = Reservacion.create(
+      usuarioId,
+      espacioId,
+      fechaInical,
+      fechaFinal,
+      totalAmount,
+    );
     //const savedReservation = await this.reservationRepository.save(reservation);
 
     // 5. Enviar notificaciones

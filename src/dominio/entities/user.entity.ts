@@ -64,6 +64,38 @@ export class User {
     );
   }
 
+  static update(
+    id:number,
+    email: string,
+    password: string,
+    nombres: string,
+    primerApellido: string,
+    segundoApellido: string,
+    fechaNacimiento: Date,
+    nacionalidad: string,
+    userName: string,
+    celular: string,
+    estado: number
+  ): User {
+
+    const passwordVO = Password.fromString(password);
+
+    return new User(
+      id,
+      email,
+      passwordVO,
+      nombres,
+      primerApellido,
+      segundoApellido,
+      fechaNacimiento,
+      nacionalidad,
+      userName,
+      celular,
+      estado,
+      new Date()
+    );
+  }
+
   static fromPersistence(
     id: number,
     email: string,

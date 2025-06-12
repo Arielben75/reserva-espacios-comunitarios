@@ -6,8 +6,8 @@ export enum EstadoReservacion {
 
 export class Reservacion {
   constructor(
-    public readonly id: string,
-    public readonly userId: string,
+    public readonly id: number,
+    public readonly userId: number,
     public readonly espacioId: number,
     public readonly fechaInicioReserva: Date,
     public readonly fechaFinReserva: Date,
@@ -15,9 +15,9 @@ export class Reservacion {
     public readonly importeTotal: number
   ) {}
 
-  static create(userId: string, espacioId: number, fechaInicioReserva: Date, fechaFinReserva: Date, importeTotal: number): Reservacion {
+  static create(userId: number, espacioId: number, fechaInicioReserva: Date, fechaFinReserva: Date, importeTotal: number): Reservacion {
     return new Reservacion(
-      crypto.randomUUID(),
+      0,
       userId,
       espacioId,
       fechaInicioReserva,

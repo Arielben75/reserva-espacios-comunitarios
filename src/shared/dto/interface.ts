@@ -21,3 +21,19 @@ export interface UserPayload {
   iat: number,
   exp: number,
 }
+
+export class PaginationOptions  {
+  size: number;
+  page: number;
+  orderBy?: string;
+  orderDirection?: 'asc' | 'desc';
+}
+
+export interface PaginationResult<T> {
+  data: T[];
+  pagination?: {
+    page: number;
+    size: number;
+    total: number;
+  };
+}
